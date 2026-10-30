@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111">
+<title>iOS Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="phone" id="phone">
+
+  <div class="status-bar">
+    <span id="statusTime">9:41</span>
+    <button onclick="toggleNotifications()">● WiFi ▰</button>
+    <div class="island"><span></span></div>
+  </div>
+
+  <section id="lockScreen" class="lock-screen">
+    <div class="lock-top">🔒</div>
+    <p id="lockDate"></p>
+    <div id="lockClock" class="lock-clock">9:41</div>
+    <p class="lock-subtitle">iPhone Simulator</p>
+    <div class="face-icon">◉</div>
+    <p>Face ID / Enter Passcode</p>
+    <input id="pinInput" type="password"
+      inputmode="numeric" maxlength="8" placeholder="Passcode">
+    <button class="unlock-btn" onclick="unlockPhone()">Unlock</button>
+    <small>Default passcode: 1234</small>
+  </section>
+
+  <section id="homeScreen" class="home-screen hidden">
+    <div class="home-widget">
+      <div id="widgetTime">9:41</div>
+      <p id="widgetDate"></p>
+    </div>
+
+    <div class="ios-grid">
+      <button onclick="openApp('phone')"><span>📞</span>Phone</button>
+      <button onclick="openApp('messages')"><span>💬</span>Messages</button>
+      <button onclick="openApp('camera')"><span>📷</span>Camera</button>
+      <button onclick="openApp('gallery')"><span>🌈</span>Photos</button>
+      <button onclick="openApp('calculator')"><span>🧮</span>Calculator</button>
+      <button onclick="openApp('notes')"><span>📝</span>Notes</button>
+      <button onclick="openApp('settings')"><span>⚙️</span>Settings</button>
+      <button onclick="openApp('music')"><span>🎵</span>Music</button>
+      <button onclick="openApp('browser')"><span>🧭</span>Safari</button>
+    </div>
+
+    <div class="ios-dock">
+      <button onclick="openApp('phone')">📞</button>
+      <button onclick="openApp('messages')">💬</button>
+      <button onclick="openApp('browser')">🧭</button>
+      <button onclick="openApp('music')">🎵</button>
+    </div>
+  </section>
+
+  <section id="appScreen" class="app-screen hidden">
+    <header>
+      <button onclick="goHome()">‹</button>
+      <h2 id="appTitle">App</h2>
+      <button onclick="toggleNotifications()">•••</button>
+    </header>
+    <div id="appContent"></div>
+  </section>
+
+  <section id="notificationPanel" class="control-center hidden">
+    <div class="control-header">
+      <h2>Control Center</h2>
+      <button onclick="toggleNotifications()">Done</button>
+    </div>
+
+    <div class="control-grid">
+      <button onclick="toggleQuick(this)">✈️ Airplane</button>
+      <button onclick="toggleQuick(this)">📶 Wi-Fi</button>
+      <button onclick="toggleQuick(this)">🔵 Bluetooth</button>
+      <button onclick="toggleQuick(this)">🌙 Focus</button>
+    </div>
+
+    <div class="control-tile">
+      ☀️ Brightness
+      <input type="range" min="0" max="100" value="80"
+        oninput="setBrightness(this.value)">
+    </div>
+
+    <div class="control-tile">
+      🔊 Volume
+      <input type="range" min="0" max="100" value="50">
+    </div>
+
+    <h3>Notifications</h3>
+    <div id="notificationsList"></div>
+    <button class="clear-btn" onclick="clearNotifications()">
+      Clear all
+    </button>
+  </section>
+
+  <div class="home-indicator" onclick="goHome()">
+    <span></span>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

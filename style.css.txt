@@ -1,0 +1,434 @@
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #111;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "SF Pro Display", "Helvetica Neue", sans-serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+.phone {
+  width: min(100vw, 420px);
+  height: min(900px, 100dvh);
+  min-height: 550px;
+  position: relative;
+  overflow: hidden;
+  border: 5px solid #303036;
+  border-radius: 43px;
+  background: linear-gradient(145deg,#172c59,#73549b,#d47b9c);
+  background-size: cover;
+  box-shadow: 0 20px 80px #000a;
+}
+
+.hidden { display: none !important; }
+
+.status-bar {
+  height: 45px;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.status-bar button {
+  background: none;
+  border: none;
+  font-size: 12px;
+}
+
+.island {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 30px;
+  border-radius: 25px;
+  background: #000;
+}
+
+.island span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 11px 0 0 85px;
+  border-radius: 50%;
+  background: #17243c;
+}
+
+.lock-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 80px 25px 50px;
+  background: inherit;
+  background-size: cover;
+  animation: fade .5s;
+}
+
+.lock-top {
+  font-size: 19px;
+}
+
+.lock-screen > p:first-of-type {
+  margin-top: 30px;
+}
+
+.lock-clock {
+  font-size: clamp(75px, 20vw, 105px);
+  line-height: 1;
+  font-weight: 200;
+  letter-spacing: -5px;
+}
+
+.lock-subtitle {
+  font-size: 16px;
+  opacity: .8;
+}
+
+.face-icon {
+  margin-top: 60px;
+  width: 55px;
+  height: 55px;
+  border: 2px solid white;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+.lock-screen input {
+  width: 80%;
+  padding: 13px;
+  margin: 12px;
+  border: 1px solid #ffffff50;
+  border-radius: 15px;
+  background: #ffffff20;
+  color: white;
+  text-align: center;
+}
+
+.unlock-btn {
+  padding: 12px 30px;
+  border: 0;
+  border-radius: 30px;
+  color: #202438;
+  background: #fff;
+  font-weight: bold;
+}
+
+.lock-screen small {
+  margin-top: 15px;
+  opacity: .65;
+}
+
+.home-screen {
+  position: absolute;
+  inset: 40px 0 35px;
+  padding: 15px 17px;
+  animation: fade .35s;
+}
+
+.home-widget {
+  margin: 35px 5px 45px;
+  padding: 15px;
+  border-radius: 22px;
+  background: #ffffff24;
+  backdrop-filter: blur(20px);
+}
+
+.home-widget div {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.home-widget p {
+  font-size: 13px;
+}
+
+.ios-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 27px 8px;
+}
+
+.ios-grid button {
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  text-shadow: 0 1px 4px #000;
+}
+
+.ios-grid button span {
+  width: 57px;
+  height: 57px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #ffffffdd;
+  font-size: 30px;
+  text-shadow: none;
+  box-shadow: 0 5px 12px #0003;
+  transition: transform .2s;
+}
+
+.ios-grid button:active span {
+  transform: scale(.85);
+}
+
+.ios-dock {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  right: 12px;
+  height: 75px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #ffffff35;
+  backdrop-filter: blur(25px);
+  border-radius: 25px;
+}
+
+.ios-dock button {
+  background: #ffffffdf;
+  border: 0;
+  border-radius: 15px;
+  width: 48px;
+  height: 48px;
+  font-size: 25px;
+}
+
+.app-screen {
+  position: absolute;
+  inset: 45px 0 30px;
+  overflow-y: auto;
+  background: #f3f3f8;
+  color: #17171a;
+  animation: openApp .3s ease;
+}
+
+.app-screen header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-screen header h2 {
+  flex: 1;
+  font-size: 18px;
+}
+
+.app-screen header button {
+  border: 0;
+  background: none;
+  color: #3478dc;
+  font-size: 28px;
+}
+
+#appContent {
+  padding: 20px;
+}
+
+#appContent input,
+#appContent textarea {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 10px 0;
+  color: #222;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 13px;
+}
+
+#appContent button {
+  padding: 12px 16px;
+  margin: 4px;
+  border: none;
+  border-radius: 13px;
+  background: #3478dc;
+  color: white;
+}
+
+#appContent .calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 9px;
+}
+
+#appContent .calc-grid button {
+  aspect-ratio: 1;
+  margin: 0;
+  border-radius: 50%;
+  font-size: 20px;
+  background: #333;
+}
+
+#appContent .calc-display {
+  font-size: 42px;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+#appContent .photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+
+#appContent .photo-grid img {
+  width: 100%;
+  border-radius: 13px;
+}
+
+#appContent .camera-video {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.control-center {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  padding: 55px 20px 45px;
+  background: #161923ed;
+  backdrop-filter: blur(30px);
+  overflow-y: auto;
+  animation: controlIn .3s;
+}
+
+.control-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.control-header button {
+  background: none;
+  border: none;
+  color: #91baff;
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.control-grid button {
+  border: none;
+  border-radius: 18px;
+  padding: 22px 8px;
+  background: #343947;
+}
+
+.control-grid button.active {
+  background: #87b9ff;
+  color: #15213a;
+}
+
+.control-tile {
+  background: #ffffff20;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 12px 0;
+}
+
+.control-tile input {
+  width: 100%;
+  accent-color: #9bbcff;
+  margin-top: 15px;
+}
+
+.notification {
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 17px;
+  background: #ffffff19;
+}
+
+.clear-btn {
+  border: 0;
+  padding: 12px;
+  width: 100%;
+  border-radius: 20px;
+  background: #ffffff24;
+  color: white;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  z-index: 25;
+  display: grid;
+  place-items: center;
+}
+
+.home-indicator span {
+  width: 110px;
+  height: 5px;
+  background: white;
+  border-radius: 10px;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes openApp {
+  from { opacity: 0; transform: scale(.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes controlIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media(max-width:430px) {
+  body { display: block; }
+  .phone {
+    width: 100%;
+    height: 100dvh;
+    min-height: 500px;
+    border: none;
+    border-radius: 0;
+  }
+}
